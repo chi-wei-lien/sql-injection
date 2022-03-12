@@ -7,6 +7,9 @@ var mysql = require('mysql');
 app.set('views', './views');
 app.set('view engine', 'pug');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -19,8 +22,31 @@ con.connect(function(err) {
   console.log("MySQL Connected!");
 });
 
-app.get('/', (req, res) => {
-	res.render('index');
+app.get('/', async (req, res) => {
+  con.query("SELECT * FROM customers", await function (err, result, fields) {
+    if (err) throw err;
+    res.render('index', {customers: result});
+  });
+});
+
+app.post('/', async (req, res) => {
+  // var sql = "SELECT * FROM customers WHERE name = " + mysql.escape(req.body.name);
+  var sql = `SELECT * FROM customers WHERE name = '${req.body.name}'`;
+
+  console.log(sql);
+  con.query(sql, await function (err, result, fields) {
+    if (err) {
+      console.log(err);
+      return res.status(500).render('error_500');
+    }
+    console.log("result" + result);
+    res.render('index', {customers: result});
+  });
+  
+})
+
+app.get('/error', async (req, res) => {
+  res.render('error');
 });
 
 const port = process.env.PORT;
@@ -28,3 +54,8 @@ const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
+
+
+
+  // SELECT * FROM customers WHERE name = ''; SELECT schema_name FROM information_schema.schemata; -- ''
+  // SELECT * FROM customers WHERE name = ''; SELECT schema_name FROM information_schema.schemata; -- '';
