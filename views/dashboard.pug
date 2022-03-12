@@ -1,0 +1,22 @@
+doctype=html
+html
+    head
+        title SQL Injection Demo
+    body
+        h1 Companies and Address
+        if username
+            h1 Welcome Back! #{username}
+
+        form(action="/dashboard" method="POST")
+            label(for="name") name:
+                input(type="text" id="name" name="name")
+            input(type="submit" value="Submit")
+
+        table(style='width:100%', border='1')
+            tr
+                th name
+                th address
+            each customer in customers
+                tr
+                    td= customer.name
+                    td= customer.address

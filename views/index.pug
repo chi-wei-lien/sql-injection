@@ -3,18 +3,13 @@ html
 	head
 		title SQL Injection Demo
 	body
-		h1 Companies and Address
+		h1 Login
 
-		form(action="/" method="POST")
-			label(for="name") name:
-				input(type="text" id="name" name="name")
+		form(action="/auth" method="POST")
+			label(for="name") usename:
+				input(type="username" id="username" name="username" required)
+			label(for="password") password:
+				input(type="password" id="password" name="password" required)
 			input(type="submit" value="Submit")
-		
-		table(style='width:100%', border='1')
-			tr
-				th name
-				th address
-			each customer in customers
-				tr
-					td= customer.name
-					td= customer.address
+		if message
+			p #{message}
