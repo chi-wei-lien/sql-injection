@@ -1,6 +1,6 @@
 # 🎃 SQL Injection Demo
 
-## Watch the Video First
+## Watch the Video First!
 
 Video Link:\
 In this video, I covered what SQL is, some basic commands of MySQL, how to perform SQL injection to log in as a user, and how to use UINON attack (a branch of SQL injection) to access sensitive data 🎃! At the end of the video, I also went over how to prevent SQL injection to protect your database! Just like always, this video is for educational purposes. If you do any illegal stuff you will get arrested 🚓!
