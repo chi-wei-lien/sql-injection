@@ -67,9 +67,9 @@ app.post('/auth', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   if (req.session.loggedin) {
-		con.query("SELECT * FROM customers", await function (err, result, fields) {
+		con.query("SELECT * FROM Students", await function (err, result, fields) {
       if (err) throw err;
-      res.render('dashboard', {customers: result, username: req.session.username});
+      res.render('dashboard', {students: result, username: req.session.username});
     });
 	} else {
 		res.redirect('/');
@@ -78,7 +78,7 @@ app.get('/dashboard', async (req, res) => {
 
 app.post('/dashboard', async (req, res) => {
   // var sql = "SELECT * FROM customers WHERE name = " + mysql.escape(req.body.name);
-  var sql = `SELECT * FROM customers WHERE name = '${req.body.name}'`;
+  var sql = `SELECT * FROM Students WHERE studentID = '${req.body.name}'`;
 
   console.log(sql);
   con.query(sql, await function (err, result, fields) {
@@ -87,7 +87,7 @@ app.post('/dashboard', async (req, res) => {
       return res.status(500).render('error_500');
     }
     console.log("result" + result);
-    res.render('dashboard', {customers: result});
+    res.render('dashboard', {students: result});
   });
   
 })

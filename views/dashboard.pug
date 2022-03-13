@@ -3,7 +3,7 @@ html
     head
         title SQL Injection Demo
     body
-        h1 Companies and Address
+        h1 Student database
         if username
             h1 Welcome Back! #{username}
 
@@ -14,9 +14,13 @@ html
 
         table(style='width:100%', border='1')
             tr
-                th name
-                th address
-            each customer in customers
+                th studentID
+                th FirstName
+                th LastName
+                th University
+            each student in students
                 tr
-                    td= customer.name
-                    td= customer.address
+                    td= student.studentID
+                    td= student.FirstName
+                    td= student.LastName
+                    td= student.UniversityName
