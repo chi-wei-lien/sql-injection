@@ -98,7 +98,7 @@ I’m Wilson, a college freshman interested in making videos on Youtube and cybe
 
 ## 📞 CONTACT:
 
-Website: https://loophole.engineer/
-Instagram: https://www.instagram.com/willy_3124/
-Github: https://github.com/chi-wei-lien/
-LinkedIn: https://www.linkedin.com/in/chi-wei-lien
+- Website: https://loophole.engineer/
+- Instagram: https://www.instagram.com/willy_3124/
+- Github: https://github.com/chi-wei-lien/
+- LinkedIn: https://www.linkedin.com/in/chi-wei-lien
