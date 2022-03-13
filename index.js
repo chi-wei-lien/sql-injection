@@ -33,6 +33,10 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/auth', async (req, res) => {
+
+  /* Method 1 to prevent SQL injection */
+  // var sql = "SELECT * FROM Users WHERE username = " + mysql.escape(req.body.username) + " AND password = " + mysql.escape(req.body.password);
+
   var sql = `SELECT * FROM Users WHERE username = '${req.body.username}' AND password = '${req.body.password}'`;
   con.query(sql, await function (err, result, fields) {
     if (err) throw err;
@@ -41,9 +45,24 @@ app.post('/auth', async (req, res) => {
       req.session.username = req.body.username;
       res.redirect('/dashboard');
     } else {
+      console.log(sql);
       res.render('index', {message: "Password Incorrect"});
     }			
   });
+
+  /* Method 2 to prevent SQL injection */
+  // con.query("SELECT * FROM Users WHERE username = ? AND password = ?", 
+  //   [req.body.username, req.body.password],
+  //   await function (err, result, fields) {
+  //   if (err) throw err;
+  //   if (result.length > 0) {
+  //     req.session.loggedin = true;
+  //     req.session.username = req.body.username;
+  //     res.redirect('/dashboard');
+  //   } else {
+  //     res.render('index', {message: "Password Incorrect"});
+  //   }			
+  // });
 });
 
 app.get('/dashboard', async (req, res) => {
