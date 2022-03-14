@@ -35,9 +35,9 @@ app.get('/', async (req, res) => {
 app.post('/auth', async (req, res) => {
 
   /* Method 1 to prevent SQL injection */
-  // var sql = "SELECT * FROM Users WHERE username = " + mysql.escape(req.body.username) + " AND password = " + mysql.escape(req.body.password);
+  var sql = "SELECT * FROM Users WHERE username = " + mysql.escape(req.body.username) + " AND password = " + mysql.escape(req.body.password);
 
-  var sql = `SELECT * FROM Users WHERE username = '${req.body.username}' AND password = '${req.body.password}'`;
+  // var sql = `SELECT * FROM Users WHERE username = '${req.body.username}' AND password = '${req.body.password}'`;
   con.query(sql, await function (err, result, fields) {
     if (err) throw err;
     if (result.length > 0) {
